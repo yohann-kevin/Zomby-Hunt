@@ -26,6 +26,7 @@ let config = {
 }
 
 const game = new Phaser.Game(config);
+let controls;
 
 function preload(){
     console.log(Enemy.plop());
@@ -41,6 +42,7 @@ function preload(){
 
 function create(){
     this.tilemap = this.make.tilemap({key: "map"});
+
     this.tileset = this.tilemap.addTilesetImage("ground","tiles");
 
     this.downLayer = this.tilemap.createStaticLayer("bottom",this.tileset,0,0);
@@ -59,8 +61,21 @@ function create(){
         this.add.sprite(450,40,"winTwo")
     ];
     for (let i = 0; i < image.length; i++) image[i].setScale(0.8);
+
+    let cursors = this.input.keyboard.createCursorKeys();
+
+    let controlConfig = {
+        camera: this.cameras.main,
+        left: cursors.left,
+        right: cursors.right,
+        up: cursors.up,
+        down: cursors.down,
+        speed: 0.5
+    }
+
+    controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
 }
 
 function update(time, delta){
-
+    controls.update(delta);
 }
