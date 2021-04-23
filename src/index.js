@@ -10,8 +10,8 @@ import ImagePlayer from './imagePlayer.js';
 let config = {
     type : Phaser.AUTO,
     backgroundColor : "#5d9bb0",
-    width : 1300,
-    height : 640,
+    width : window.screen.width,
+    height : window.screen.height,
     scene : {
         preload : preload,
         create : create,
