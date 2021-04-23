@@ -3,6 +3,11 @@ import tilesheet from './assets/images/tilesheet.png';
 import map from './assets/json/test.json';
 import Enemy from './enemy.js';
 import ImagePlayer from './imagePlayer.js';
+import spritesheet from './assets/images/spritesheet.png';
+import adventurer from './assets/json/adventurer.json';
+
+console.log(adventurer);
+console.log(spritesheet);
 
 // console.log(window.screen.width);
 // console.log(window.screen.height);
@@ -38,6 +43,15 @@ function preload(){
     this.load.image("walkTwo", ImagePlayer.adventurerWalkTwo());
     this.load.image("winOne", ImagePlayer.adventurerWinOne());
     this.load.image("winTwo", ImagePlayer.adventurerWinTwo());
+
+    // this.load.atlas("adventurer", adventurer);
+    this.load.atlas(
+        "adventurer", 
+        './src/assets/images/spritesheet.png', 
+        './src/assets/json/adventurer.json',
+        Phaser.Loader.TEXTURE_ATLAS_JSON_HASH,
+        Phaser.Loader.TEXTURE_ATLAS_JSON_HASH
+    );
 }
 
 function create(){
@@ -49,18 +63,7 @@ function create(){
     this.worldLayer = this.tilemap.createStaticLayer("world",this.tileset,0,0);
     this.topLayer = this.tilemap.createStaticLayer("top",this.tileset,0,0);
 
-    let cameraPositionX = this.cameras.main.centerX;
-    let cameraPositionY = this.cameras.main.centerY;
-    let player = this.add.sprite(cameraPositionX, cameraPositionY, "player");
-    player.setScale(0.8);
-    let image = [
-        this.add.sprite(50,40,"kick"),
-        this.add.sprite(150,40,"walkOne"),
-        this.add.sprite(250,40,"walkTwo"),
-        this.add.sprite(350,40,"winOne"),
-        this.add.sprite(450,40,"winTwo")
-    ];
-    for (let i = 0; i < image.length; i++) image[i].setScale(0.8);
+    let player = this.add.sprite(200,200,"adventurer","adventurer_stand");
 
     let cursors = this.input.keyboard.createCursorKeys();
 
