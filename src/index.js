@@ -27,7 +27,8 @@ const phaserGame = new Phaser.Game(config);
 let game = {
     scene: null,
     world: World,
-    player: Player
+    player: Player,
+    cursors: null
 }
 
 function preload(){
@@ -46,12 +47,13 @@ function preload(){
 
 function create(){
     game.world.initWorld(game);
-
     game.player.initPlayer(game);
     game.player.generatePlayerAnimations(game);
     // game.player.aPlayer.play("playerWalk");
+    game.world.manageCollider(game);
+    game.cursors = game.scene.input.keyboard.createCursorKeys();
 }
 
 function update(time, delta){
-    // controls.update(delta);
+    game.player.manageMove(game);
 }
