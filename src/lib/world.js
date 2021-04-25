@@ -1,23 +1,26 @@
-let World = {
-    tilemap: null,
-    tileset: null,
-    downLayer: null,
-    worldLayer: null,
-    topLayer: null,
+class World {
+    constructor(game) {
+        this.game = game;
+        this.tilemap = null;
+        this.tileset = null;
+        this.downLayer = null;
+        this.worldLayer = null;
+        this.topLayer = null;
+    }
 
-    initWorld: function(game) {
-        this.tilemap = game.scene.make.tilemap({key: "map"});
+    initWorld() {
+        this.tilemap = this.game.make.tilemap({key: "map"});
         this.tileset = this.tilemap.addTilesetImage("ground","tiles");
         this.downLayer = this.tilemap.createStaticLayer("bottom",this.tileset,0,0);
         this.worldLayer = this.tilemap.createStaticLayer("world",this.tileset,0,0);
         this.topLayer = this.tilemap.createStaticLayer("top",this.tileset,0,0);
 
         this.downLayer.setCollisionByProperty({"rigid-body": true});
-    },
-
-    manageCollider: function(game) {
-        game.scene.physics.add.collider(game.player.aPlayer, this.downLayer);
     }
-}   
+
+    manageCollider() {
+        this.game.physics.add.collider(this.game.player.playerOne, this.downLayer);
+    }
+}
 
 module.exports = World;

@@ -1,14 +1,17 @@
-let Player = {
-    aPlayer: null,
+class Player {
+    constructor(game) {
+        this.game = game;
+        this.playerOne = null;
+    }
 
-    initPlayer: function(game) {
-        this.aPlayer = game.scene.physics.add.sprite(200,200,"adventurer","adventurer_stand");
-    },
+    initPlayer() {
+        this.playerOne = this.game.physics.add.sprite(200, 200, "adventurer", "adventurer_stand");
+    }
 
-    generatePlayerAnimations: function(game) {
-        game.scene.anims.create({
+    generatePlayerAnimations() {
+        this.game.anims.create({
             key: "playerWalk",
-            frames: game.scene.anims.generateFrameNames("adventurer", {
+            frames: this.game.anims.generateFrameNames("adventurer", {
                 prefix: "adventurer_walk",
                 start: 1,
                 end: 2
@@ -16,15 +19,17 @@ let Player = {
             frameRate: 5,
             repeat: -1
         })
-    },
+    }
 
-    manageMove: function(game) {
-        if (game.cursors.left.isDown) {
-            this.aPlayer.setVelocityX(-200);
-        } else if (game.cursors.right.isDown) {
-            this.aPlayer.setVelocityX(+200);
+    manageMove() {
+        if (this.game.cursors.left.isDown) {
+            this.playerOne.setVelocityX(-200);
+            this.playerOne.play("playerWalk");
+        } else if (this.game.cursors.right.isDown) {
+            this.playerOne.setVelocityX(+200);
+            this.playerOne.play("playerWalk");
         } else {
-            this.aPlayer.setVelocityX(0);
+            this.playerOne.setVelocityX(0);
         }
     }
 }
