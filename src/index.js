@@ -63,7 +63,19 @@ function create(){
     this.worldLayer = this.tilemap.createStaticLayer("world",this.tileset,0,0);
     this.topLayer = this.tilemap.createStaticLayer("top",this.tileset,0,0);
 
+    this.anims.create({
+        key: "playerWalk",
+        frames: this.anims.generateFrameNames("adventurer", {
+            prefix: "adventurer_walk",
+            start: 1,
+            end: 2
+        }),
+        frameRate: 5,
+        repeat: -1
+    })
+
     let player = this.add.sprite(200,200,"adventurer","adventurer_stand");
+    // player.anims.play("playerWalk");
 
     let cursors = this.input.keyboard.createCursorKeys();
 
