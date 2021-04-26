@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import tilesheet from './assets/images/tilesheet.png';
 import map from './assets/json/test.json';
-import World from './lib/World.js';
-import Player from './lib/Player.js';
+import World from './lib/World';
+import Player from './lib/Player';
 
 class Game extends Phaser.Scene {
     constructor () {
