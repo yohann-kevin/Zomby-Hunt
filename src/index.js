@@ -34,6 +34,8 @@ class Game extends Phaser.Scene {
 
         this.world.manageCollider();
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.world.manageCameras();
     }
 
     update () {

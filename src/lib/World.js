@@ -16,10 +16,16 @@ class World {
         this.topLayer = this.tilemap.createStaticLayer("top",this.tileset,0,0);
 
         this.downLayer.setCollisionByProperty({"rigid-body": true});
+        this.game.physics.world.setBounds(0,0,this.tilemap.widthInPixels, this.tilemap.heightInPixels);
     }
 
     manageCollider() {
         this.game.physics.add.collider(this.game.player.playerOne, this.downLayer);
+    }
+
+    manageCameras() {
+        this.game.cameras.main.startFollow(this.game.player.playerOne);
+        this.game.cameras.main.setBounds(0,0,this.tilemap.widthInPixels, this.tilemap.heightInPixels);
     }
 }
 

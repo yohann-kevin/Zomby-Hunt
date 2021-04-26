@@ -6,6 +6,7 @@ class Player {
 
     initPlayer() {
         this.playerOne = this.game.physics.add.sprite(200, 200, "adventurer", "adventurer_stand");
+        this.playerOne.setCollideWorldBounds(true);
     }
 
     generatePlayerAnimations() {
