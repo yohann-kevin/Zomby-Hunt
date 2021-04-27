@@ -1,5 +1,6 @@
 import 'phaser';
 import Config from './lib/Config';
+import Style from './lib/Style';
 import World from './lib/World';
 import Player from './lib/Player';
 
@@ -16,10 +17,6 @@ export default class Game extends Phaser.Scene {
     }
 
     preload () {
-        let app: HTMLElement = document.getElementById("body");
-        app.style.margin = "0";
-        app.style.padding = "0";
-
         this.load.image("tiles", '../assets/images/tilesheet.png');
         this.load.tilemapTiledJSON("map", '../assets/json/test.json');
 
@@ -31,6 +28,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create () {
+        new Style().initStyle();
         this.world.initWorld();
 
         this.player.initPlayer();
