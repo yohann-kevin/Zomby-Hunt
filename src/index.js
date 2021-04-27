@@ -1,3 +1,5 @@
+// js version :
+
 import Phaser from 'phaser';
 import Config from './lib/Config';
 import Game from './lib/Game';
