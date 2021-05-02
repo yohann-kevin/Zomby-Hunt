@@ -5,8 +5,8 @@ export default class Config {
         this.config = {
             type : Phaser.AUTO,
             backgroundColor : "#5d9bb0",
-            width : window.screen.width,
-            height : window.screen.height,
+            width : window.innerWidth,
+            height : window.innerHeight,
             scene: null,
             physics : {
                 default : "arcade",
