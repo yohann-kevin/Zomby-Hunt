@@ -1,16 +1,19 @@
 import Game from "../Game";
+import Animations from "./Animations";
 
 export default class Player {
     name: string;
     game: Game;
     playerOne: any;
     isJumping: boolean;
+    animations: Animations;
 
     constructor (game: Game) {
         this.name = "kirua";
         this.game = game;
         this.playerOne = null;
         this.isJumping = false;
+        this.animations = new Animations(this.game);
     }
 
     initPlayer () {
@@ -19,22 +22,8 @@ export default class Player {
     }
 
     generatePlayerAnimations() {
-        this.game.anims.create({
-            key: "playerWalk",
-            frames: this.game.anims.generateFrameNames("adventurer", {
-                prefix: "adventurer_walk",
-                start: 1,
-                end: 2
-            }),
-            frameRate: 5,
-            repeat: -1
-        });
-        this.game.anims.create({
-            key: "playerIdle",
-            frames: [{key: "adventurer", frame: "adventurer_stand"}, {key: "adventurer", frame: "adventurer_idle"}],
-            frameRate: 2,
-            repeat: -1
-        });
+        this.animations.walkAnim();
+        this.animations.idleAnim();
     }
 
     manageMove() { 
